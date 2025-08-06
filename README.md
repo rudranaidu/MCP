@@ -1,9 +1,5 @@
 # MCP
 
-Here’s a **clean, enriched, and beginner-friendly** version of your notes on **Model Context Protocol (MCP)**. I've organized the ideas logically, simplified the terminology, added explanations where needed, and structured it so someone familiar with GenAI and agentic concepts can follow smoothly.
-
----
-
 # 🧠 Understanding MCP (Model Context Protocol)
 
 ## 🌟 Why MCP?
@@ -127,7 +123,3 @@ This is the common "language" used between MCP client and MCP server.
 ## 🧠 Final Thoughts
 
 MCP enables the **next generation of agentic AI systems** where LLMs are not just passive responders but **active doers** — performing tasks reliably across environments using a standardized, plug-and-play protocol.
-
----
-
-Would you like a **visual diagram** or **flowchart** summarizing this interaction? I can create one for even better clarity.
