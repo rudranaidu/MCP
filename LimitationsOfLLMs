@@ -1,0 +1,17 @@
+Large language models (LLMs) are powerful at generating and understanding text. 
+However, when an LLM is used in isolation, it faces several inherent limitations
+
+  Limited knowledge beyond training
+  No built-in access to external data
+  Context window limitations
+
+
+What makes a system agentic?
+   Agentic systems provide an LLM with a set of external tools and access to dynamic context, 
+   empowering the model to determine when and how to use those tools as it works to solve a task.
+   In other words, the LLM is no longer just a passive generator of text; it is augmented with the capacity to:
+   Retrieve information (for example, searching the web or querying a database)
+   Invoke services or APIs (such as calling a weather service, sending an email, or running a calculation)
+   Maintain longer context or memory (by storing and recalling conversation history or relevant documents as needed)
+
+Crucially, the agent decides which tool to use and when, based on the problem it’s trying to solve. 
