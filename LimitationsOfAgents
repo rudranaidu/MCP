@@ -1,0 +1,18 @@
+Giving an AI agent tools and context wasn’t a fix-all solution. 
+Each new integration, whether connecting an LLM to a database, a cloud service, or a file system, 
+still required custom code, careful prompt engineering, and special handling for security. 
+For every new “ability,” you often had to build a new integration from scratch.
+
+This approach doesn’t scale:
+
+Developers found it difficult to scale truly connected systems when every data source needed a custom integration.
+
+The proliferation of bespoke tools led to fragile systems, where one tool’s
+output might not be formatted as the LLM expects, causing errors or misinterpretations.
+
+The field needed a universal, open, secure protocol to connect any tool, 
+data source, or resource and allow agentic systems to truly scale.
+
+
+This is exactly why the Model Context Protocol (MCP) was created.
+MCP is the open standard designed to connect AI agents to the world of tools and data, securely, flexibly, and at scale.
