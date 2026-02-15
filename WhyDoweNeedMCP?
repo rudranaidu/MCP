@@ -53,9 +53,7 @@ When tools can take actions, you need guardrails:
 
 MCP is often used as an integration boundary where these controls can be implemented consistently. (Exact implementation depends on your environment and internal policies.)
 
-## What MCP provides (simple phrasing)
-
-Your bullets are good—here’s a slightly more complete set:
+## What MCP provides 
 
 - A **standard way to connect** LLM hosts/clients to external tools/services (via MCP servers)
 - A consistent way to **define tools** (name, description, parameter schema)
@@ -64,11 +62,7 @@ Your bullets are good—here’s a slightly more complete set:
 - A consistent way to return **errors** (structured failure modes)
 - A pattern that supports **multi-tool** and **multi-step** workflows more cleanly
 
----
-
 ## When you might *not* need MCP
-
-You’re correct: MCP isn’t always worth it. You may skip MCP when:
 
 - The AI feature is **simple**, calls **one internal function/API**, and won’t expand
 - Inputs/outputs are **static and tightly controlled**
