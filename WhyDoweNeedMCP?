@@ -1,0 +1,88 @@
+Why do we need MCP (Model Context Protocol)?
+
+LLMs are moving from “answering questions” to acting like agents they interpret user intent, decide what to do next,
+and often call external tools/systems (APIs, databases, ticketing systems, document stores, etc.) to fetch context or perform actions.
+
+As soon as an LLM interacts with external systems, common challenges appear:
+
+1) Standard, model-agnostic integration to tools
+
+Without a standard, every combination becomes custom:
+- Each LLM/provider has its own “tool calling” format and conventions.
+- Every tool must be integrated separately for each model runtime.
+
+MCP provides a standardized interface so tools can be exposed once and used across different LLM clients/hosts more consistently (reducing integration duplication).
+
+2) A consistent way to expose “capabilities” and “context”
+Real applications need more than a single API call. They need:
+- A discoverable list of tools/capabilities (what the system can do)
+- Consistent input schemas for parameters
+- Consistent output schemas for results
+
+MCP helps by standardizing how tools are described and invoked, so the model (and host app) can reason about them reliably.
+
+3) Reliability: handling failures and partial failures
+External calls fail in many real-world ways:
+- Timeouts, throttling, transient outages
+- Partial results (some data retrieved, some failed)
+- Validation errors or permission errors
+
+MCP doesn’t magically eliminate failures, but it encourages a **standard contract** for:
+- Structured errors (so the client can react consistently)
+- Clear success vs. failure semantics
+- Predictable response formatting for downstream reasoning
+
+In enterprise systems, you’ll still want additional best practices around:
+- Retries with backoff
+- Idempotency for “action” tools (avoid double-creation)
+- Circuit breakers, rate limiting, and observability (logs/traces)
+
+4) Separation of concerns: model vs. system integration
+A key practical benefit: you can treat the LLM as a reasoning engine while the MCP server acts as:
+
+- A **controlled gateway** to enterprise systems
+- A place to enforce security, policy, and auditing
+- A stable integration layer even if models change
+
+5) Security and governance (enterprise-critical)
+When tools can take actions, you need guardrails:
+- Authentication/authorization (who can access which tools?)
+- Data minimization (don’t pass sensitive data unnecessarily)
+- Auditing (who asked for what action, what was executed?)
+- Policy enforcement (blocked operations, approved scopes)
+
+MCP is often used as an integration boundary where these controls can be implemented consistently. (Exact implementation depends on your environment and internal policies.)
+
+## What MCP provides (simple phrasing)
+
+Your bullets are good—here’s a slightly more complete set:
+
+- A **standard way to connect** LLM hosts/clients to external tools/services (via MCP servers)
+- A consistent way to **define tools** (name, description, parameter schema)
+- A consistent way to **pass parameters** and validate them
+- A consistent way to **return results** (structured output)
+- A consistent way to return **errors** (structured failure modes)
+- A pattern that supports **multi-tool** and **multi-step** workflows more cleanly
+
+---
+
+## When you might *not* need MCP
+
+You’re correct: MCP isn’t always worth it. You may skip MCP when:
+
+- The AI feature is **simple**, calls **one internal function/API**, and won’t expand
+- Inputs/outputs are **static and tightly controlled**
+- You don’t need tool discovery, standard schemas, or cross-model portability
+- Latency/overhead and operational complexity would outweigh the benefits
+
+In those cases, a direct SDK/API integration can be simpler and faster to ship.
+
+## A good rule of thumb
+
+Use MCP when:
+- You anticipate **multiple tools**, evolving toolsets, or multiple model providers
+- You need stronger **governance/security boundaries**
+- You want a scalable pattern for **reliability, observability, and reuse**
+
+Avoid MCP when:
+- It’s a “single-call, stable contract” use case and won’t grow
