@@ -80,3 +80,15 @@ Use MCP when:
 
 Avoid MCP when:
 - It’s a “single-call, stable contract” use case and won’t grow
+
+With MCP
+
+The challenge (Before MCP):
+Need custom integrations for each API. Authentication differed. Data formats were inconsistent.
+Updates were painful. Switching agents required starting over.
+
+The solution (With MCP):
+
+Now each resource as an MCP server, and her assistant acts as an MCP client. 
+Tools are discoverable, secure, and modular.
+Integration becomes reusable and maintainable—no more vendor lock-in, no more brittle connectors.
